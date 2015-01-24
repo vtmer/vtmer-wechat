@@ -6,7 +6,7 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"yoozi/weixin": "~1.0"
+		"yoozi/weixin": "1.0.x-dev"
 	},
 	"autoload": {
 		"classmap": [
