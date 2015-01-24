@@ -8,7 +8,7 @@ class WeixinEventHandler
         $receiver = WeixinInput::get('fromusername');
         $content = WeixinInput::get('content');
 
-        if ($content[0] == 'v') {
+        if ($content[0] == 'v' || $content[0] == 'V') {
             $name = substr($content, 1);
             $user = Contact::where('name', '=', $name)->first();
             if ($user) {
@@ -23,7 +23,7 @@ class WeixinEventHandler
                     $response .= "QQ: $user->qq";
                 }
             } else {
-                $response = 'no this guy';
+                $response = 'There is no this guy.';
             }
         } else {
             $response = 'hello, vtmer!';
