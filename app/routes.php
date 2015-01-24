@@ -15,3 +15,8 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+WeixinRouter::bind('text', 'MyWeixinEventHandler@text');
+
+WeixinRouter::bindDefault('MyWeixinEventHandler@defaultEvent');
+
