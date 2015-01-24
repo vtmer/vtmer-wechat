@@ -122,6 +122,7 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
+        'Yoozi\Weixin\WeixinServiceProvider',
 	),
 
 	/*
@@ -177,7 +178,7 @@ return array(
 		'Redirect'          => 'Illuminate\Support\Facades\Redirect',
 		'Redis'             => 'Illuminate\Support\Facades\Redis',
 		'Request'           => 'Illuminate\Support\Facades\Request',
-		'Response'          => 'Illuminate\Support\Facades\Response',
+		'Response'          => 'Yoozi\Weixin\Facades\Response',
 		'Route'             => 'Illuminate\Support\Facades\Route',
 		'Schema'            => 'Illuminate\Support\Facades\Schema',
 		'Seeder'            => 'Illuminate\Database\Seeder',
@@ -189,6 +190,11 @@ return array(
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
 
+        'WeixinInput'       => 'Yoozi\Weixin\Facades\WeixinInput',
+        'WeixinRouter'       => 'Yoozi\Weixin\Facades\WeixinRouter',
+        'WeixinMessage'       => 'Yoozi\Weixin\Facades\WeixinMessage',
+        'OAuthClient'       => 'Yoozi\Weixin\Facades\OAuthClient',
+        'WeixinClient'       => 'Yoozi\Weixin\Facades\WeixinClient',
 	),
 
 );
