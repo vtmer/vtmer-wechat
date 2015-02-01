@@ -7,20 +7,32 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
-	use UserTrait, RemindableTrait;
+    use UserTrait, RemindableTrait;
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'users';
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'user';
 
-	/**
-	 * The attributes excluded from the model's JSON form.
-	 *
-	 * @var array
-	 */
-	protected $hidden = array('password', 'remember_token');
+    protected $primaryKey = 'open_id';
 
+    public function groups()
+    {
+        return $this->belongsToMany('Group', 'user_group', 'open_id', 'group_id');
+    }
+
+    public function join_group_by_id($group_id)
+    {
+        $this->groups()->attach($group_id);
+    }
+
+    public function join_group_by_name($group_name)
+    {
+        $group = Group::where('name', '=', $group_name)->first();
+        if ($group) {
+            $this->join_group_by_id($group->group_id);
+        }
+    }
 }
