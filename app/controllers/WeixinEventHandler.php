@@ -42,7 +42,7 @@ class WeixinEventHandler
         if ($this->user->is_in_group_by_name('vtmer')) {
             if ($content[0] == 'v' || $content[0] == 'V') {
                 $name = substr($content, 1);
-                $user = Contact::where('name', '=', $name)->first();
+                $user = Contact::where('name', 'LIKE', "%$name%")->first();
                 if ($user) {
                     $response = "$user->name\n>>>>>\n";
                     if ($user->phone_number) {
