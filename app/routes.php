@@ -18,5 +18,7 @@ Route::get('/', function()
 
 WeixinRouter::bind('text', 'WeixinEventHandler@text');
 
+WeixinRouter::bind('event:subscribe', 'WeixinEventHandler@subscribe');
+
 WeixinRouter::bindDefault('WeixinEventHandler@defaultEvent');
 

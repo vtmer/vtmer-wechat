@@ -2,10 +2,25 @@
 
 class WeixinEventHandler
 {
+
+    /**
+     * 发送者
+     */
+    private $sender;
+
+    /**
+     * 接受者
+     */
+    private $receiver;
+
+    public function __construct()
+    {
+        $this->sender = WeixinInput::get('tousername');
+        $this->receiver = WeixinInput::get('fromusername');
+    }
+
     public function text()
     {
-        $sender = WeixinInput::get('tousername');
-        $receiver = WeixinInput::get('fromusername');
         $content = WeixinInput::get('content');
 
         if ($content[0] == 'v' || $content[0] == 'V') {
@@ -28,16 +43,24 @@ class WeixinEventHandler
         } else {
             $response = 'hello, vtmer!';
         }
-        $message = WeixinMessage::text($receiver, $sender, $response);
+        $message = WeixinMessage::text(
+            $this->receiver, $this->sender, $response);
+
+        return Response::xml($message);
+    }
+
+    public function subscribe()
+    {
+        $response = Config::get('weixinText')['subscribe'];
+
+        $message = WeixinMessage::text(
+            $this->receiver, $this->sender, $response);
 
         return Response::xml($message);
     }
 
     public function defaultEvent() {
-        $sender = WeixinInput::get('tousername');
-        $receiver = WeixinInput::get('fromusername');
-
-        $message = WeixinMessage::text($receiver, $sender, 'hello, vtmer!');
+        $message = WeixinMessage::text($this->receiver, $this->sender, 'hello, vtmer!');
 
         return Response::xml($message);
     }
