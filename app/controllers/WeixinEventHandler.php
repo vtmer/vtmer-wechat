@@ -21,6 +21,7 @@ class WeixinEventHandler
             $user = new User();
             $user->open_id = $this->receiver;
             $user->save();
+            $user = User::find($this->receiver);
         }
         $user->touch();
         $this->user = $user;
